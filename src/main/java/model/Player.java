@@ -1,9 +1,12 @@
 package model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Player {
@@ -11,6 +14,9 @@ public class Player {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	private String name;
+	@ManyToOne(cascade= {CascadeType.PERSIST, CascadeType.REMOVE})
+	@JoinColumn(name="coach_id")
+	private Coach coach;
 
 	// Getters & setters
 	public int getId() {
@@ -27,6 +33,14 @@ public class Player {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public Coach getCoach() {
+		return coach;
+	}
+
+	public void setCoach(Coach coach) {
+		this.coach = coach;
 	}
 
 	// Constructeurs
