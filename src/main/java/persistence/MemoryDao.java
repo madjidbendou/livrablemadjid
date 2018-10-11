@@ -2,6 +2,7 @@ package persistence;
 
 import model.Coach;
 import model.Player;
+import model.Sponsor;
 
 public interface MemoryDao {
 	
@@ -9,6 +10,7 @@ public interface MemoryDao {
 	
 	public void create(Player player);
 	public void createCoach(Coach coach);
+	public void createSponsor(Sponsor sponsor);
 	
 //	public void update(int id, String name);
 

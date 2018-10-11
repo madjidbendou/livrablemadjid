@@ -7,6 +7,7 @@ import javax.persistence.Persistence;
 
 import model.Coach;
 import model.Player;
+import model.Sponsor;
 
 public class MemoryDaoImpl implements MemoryDao {
 
@@ -157,7 +158,33 @@ public class MemoryDaoImpl implements MemoryDao {
 			
 			}
 		}		
-	}		
 	}
+
+	@Override
+	public void createSponsor(Sponsor sponsor) {
+			try {
+				tx.begin();
+				
+				em.persist(sponsor);
+
+				tx.commit();
+
+			} catch (Exception e) {
+				if (tx != null) {
+					tx.rollback();
+				}
+				e.printStackTrace();
+			} finally {
+				if (em != null) {
+					em.close();
+				}
+//				if (emf != null) {
+	//
+//					emf.close();
+//				}
+			}
+		}		
+	}		
+	
 
 //}
